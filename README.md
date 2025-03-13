@@ -9,5 +9,5 @@ Este script automatiza a instalação e configuração de um servidor PHP com as
 ## Como usar
 - Faça o processo com usuario ```root```
 - Tenha ```curl``` instalado
-- Execute: ```curl -sSL "https://xxxx/installer.sh" | bash -s 8.4 nginx mariadb```
+- Execute: ```curl -sSL "https://raw.githubusercontent.com/wilianmaique/lamp-lemp-setup/refs/heads/main/installer.sh" | bash -s 8.4 nginx mariadb```
 - Param: **php_version** = ```8.4``` **server_type** = ```apache | nginx``` **db_type** = ```mysql | mariadb```
