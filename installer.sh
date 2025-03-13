@@ -57,10 +57,16 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
 echo_message "Installing NodeJS ..."
-curl -o- https://fnm.vercel.app/install | bash
-source /root/.bashrc
-fnm install 23
-node -v && npm -v
+curl -fsSL https://fnm.vercel.app/install | bash
+
+if [ -f "$HOME/.bashrc" ]; then
+  source $HOME/.bashrc
+elif [ -f "/root/.bashrc" ]; then
+  source /root/.bashrc
+fi
+
+fnm install 23 && node -v && npm -v
+sudo npm -g update
 
 sudo apt update && sudo apt upgrade -y
 
