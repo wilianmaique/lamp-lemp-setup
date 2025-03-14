@@ -19,20 +19,17 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y zip unzip
 
 echo_message "Add repository PHP ..."
-sudo add-apt-repository ppa:ondrej/php -y
+sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
 
 echo_message "Installing PHP $PHP_VERSION ..."
-sudo apt install -y php$PHP_VERSION php$PHP_VERSION-redis php$PHP_VERSION-cli php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-xml php$PHP_VERSION-mbstring php$PHP_VERSION-curl php$PHP_VERSION-zip php$PHP_VERSION-bcmath php$PHP_VERSION-soap php$PHP_VERSION-intl php$PHP_VERSION-gd php$PHP_VERSION-opcache
-sudo systemctl enable php$PHP_VERSION-fpm
+sudo apt install -y php$PHP_VERSION-{cli,common,redis,fpm,mysql,xml,mbstring,curl,zip,bcmath,soap,intl,gd,opcache}
 
 echo_message "Installing Server web: $SERVER_TYPE ..."
 if [ "$SERVER_TYPE" == "apache" ]; then
   sudo apt install -y apache2 libapache2-mod-fastcgi
-  sudo systemctl enable apache2
 elif [ "$SERVER_TYPE" == "nginx" ]; then
   sudo apt install -y nginx
-  sudo systemctl enable nginx
 fi
 
 echo_message "Installing Database: $DB_TYPE ..."
