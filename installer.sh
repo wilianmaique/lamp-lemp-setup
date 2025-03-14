@@ -60,9 +60,18 @@ echo_message "Installing NodeJS ..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 23
+sudo apt install -y npm
+
+echo_message "NodeJS version:"
 node -v
+
+echo_message "NVM version:"
 nvm current
+
+echo_message "NPM version:"
 npm -v
+
+echo_message "NPM version:"
 sudo npm -g update
 
 sudo apt update && sudo apt upgrade -y
