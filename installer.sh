@@ -38,10 +38,10 @@ fi
 echo_message "Installing Database: $DB_TYPE ..."
 if [ "$DB_TYPE" == "mysql" ]; then
   sudo apt install -y mysql-server
-  sudo systemctl enable mysql-server
+  sudo systemctl enable mysql
 elif [ "$DB_TYPE" == "mariadb" ]; then
   sudo apt install -y mariadb-server
-  sudo systemctl enable mariadb-server
+  sudo systemctl enable mariadb
 fi
 
 echo_message "Installing Redis ..."
@@ -57,15 +57,12 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
 echo_message "Installing NodeJS ..."
-curl -fsSL https://fnm.vercel.app/install | bash
-
-if [ -f "$HOME/.bashrc" ]; then
-  source $HOME/.bashrc
-elif [ -f "/root/.bashrc" ]; then
-  source /root/.bashrc
-fi
-
-fnm install 23 && node -v && npm -v
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 23
+node -v
+nvm current
+npm -v
 sudo npm -g update
 
 sudo apt update && sudo apt upgrade -y
